@@ -1,6 +1,6 @@
 #################################################
 #                                               #
-#          csum - ColorSupport Module           #
+#            csum - Help Command                #
 #                                               #
 #                                               #
 # This module is part of the csum project,      #
@@ -21,47 +21,18 @@
 #                                               #
 #################################################
 
-module ColorSupport
-  @@GREEN = ""
-  @@RED = ""
-  @@YELLOW = ""
-  @@RESET = ""
-  @@BOLD = ""
+require "../utils/colors.cr"
 
-  def self.support_colors? : Bool
-    return false unless ENV["TERM"]
-    return true if ENV["TERM"].includes?("color") ||
-                   ENV["TERM"].includes?("256color")
-    return false
-  end
+def show_help
+  puts "#{ColorSupport.bold}Usage: csum [OPTION]... [FILE]...#{ColorSupport.reset}"
+  puts "#{ColorSupport.green}Display or verify BSD (16-bit) checksums.#{ColorSupport.reset}"
+  puts "\n"
 
-  def self.set_colors
-    if self.support_colors?
-      @@GREEN = "\033[32m"
-      @@RED = "\033[31m"
-      @@YELLOW = "\033[33m"
-      @@RESET = "\033[0m"
-      @@BOLD = "\033[1m"
-    end
-  end
+  puts "#{ColorSupport.yellow}If no FILE is specified, or if FILE is -, reads from standard input.#{ColorSupport.reset}"
+  puts "\n"
 
-  def self.green
-    @@GREEN
-  end
-
-  def self.red
-    @@RED
-  end
-
-  def self.yellow
-    @@YELLOW
-  end
-
-  def self.reset
-    @@RESET
-  end
-
-  def self.bold
-    @@BOLD
-  end
+  puts "\t #{ColorSupport.green}-r#{ColorSupport.reset} \t\t\t use the default BSD sum algorithm, operating with 1K blocks."
+  puts "\t #{ColorSupport.green}-s, \t --sysv#{ColorSupport.reset} \t use the System V sum algorithm, operating with 512-byte blocks."
+  puts "\t\t #{ColorSupport.green}--help#{ColorSupport.reset} \t show this help message and exit."
+  puts "\t\t #{ColorSupport.green}--version#{ColorSupport.reset} \t show version information and exit."
 end
