@@ -52,5 +52,7 @@ module BSDSumAlgorithm
     length.value = total_bytes
 
     return 0
+  rescue ex
+    return -1
   end
 end
