@@ -40,6 +40,12 @@ module BSDSumAlgorithm
         checksum &= 0xffff
         sum += 1
       end
+
+      total_bytes += bytes_read.to_u64
+
+      if total_bytes < bytes_read.to_u64
+        return -1
+      end
     end
   end
 end
