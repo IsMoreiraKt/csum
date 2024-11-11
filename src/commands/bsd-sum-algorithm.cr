@@ -47,5 +47,10 @@ module BSDSumAlgorithm
         return -1
       end
     end
+
+    resstream.value = checksum
+    length.value = total_bytes
+
+    return 0
   end
 end
