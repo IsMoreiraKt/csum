@@ -29,8 +29,17 @@ module BSDSumAlgorithm
     total_bytes = 0_u64
 
     loop do
-        bytes_read = input.read(buffer) || 0
-        break if bytes_read == 0
+      bytes_read = input.read(buffer) || 0
+      break if bytes_read == 0
+
+      sum = 0
+
+      while sum < bytes_read
+        checksum = (checksum >> 1) + ((checksum & 1) << 15)
+        checksum += buffer[sum]
+        checksum &= 0xffff
+        sum += 1
+      end
     end
   end
 end
