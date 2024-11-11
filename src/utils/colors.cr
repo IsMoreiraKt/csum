@@ -19,7 +19,6 @@
 # `sum` utility, which can be found here:       #
 # https://github.com/coreutils/coreutils        #
 #                                               #
-#                                               #
 #################################################
 
 module ColorSupport
@@ -28,6 +27,13 @@ module ColorSupport
   @@YELLOW = ""
   @@RESET = ""
   @@BOLD = ""
+
+  def self.support_colors? : Bool
+    return false unless ENV["TERM"]
+    return true if ENV["TERM"].includes?("color") ||
+                   ENV["TERM"].includes?("256color")
+    return false
+  end
 
   def self.green
     @@GREEN
