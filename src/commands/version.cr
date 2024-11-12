@@ -1,6 +1,6 @@
 #################################################
 #                                               #
-#             csum - Help Module                #
+#             csum - Version Module             #
 #                                               #
 #                                               #
 # This module is part of the csum project,      #
@@ -23,18 +23,13 @@
 
 require "../utils/colors.cr"
 
-module Help
-  def self.show_help
-    puts "#{ColorSupport.bold}Usage: csum [OPTION]... [FILE]...#{ColorSupport.reset}"
-    puts "#{ColorSupport.green}Display or verify BSD (16-bit) checksums.#{ColorSupport.reset}"
-    puts "\n"
-
-    puts "#{ColorSupport.yellow}If no FILE is specified, or if FILE is -, reads from standard input.#{ColorSupport.reset}"
-    puts "\n"
-
-    puts "\t #{ColorSupport.green}-r#{ColorSupport.reset} \t\t\t use the default BSD sum algorithm, operating with 1K blocks."
-    puts "\t #{ColorSupport.green}-s, \t --sysv#{ColorSupport.reset} \t use the System V sum algorithm, operating with 512-byte blocks."
-    puts "\t\t #{ColorSupport.green}--help#{ColorSupport.reset} \t show this help message and exit."
-    puts "\t\t #{ColorSupport.green}--version#{ColorSupport.reset} \t show version information and exit."
+module CheckVersion
+  def self.show_version
+    puts "#{ColorSupport.bold}csum 0.1#{ColorSupport.reset}"
+    puts "#{ColorSupport.cyan}Copyright (C) 2022 Free Software Foundation, Inc.#{ColorSupport.reset}"
+    puts "#{ColorSupport.cyan}License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.#{ColorSupport.reset}"
+    puts "#{ColorSupport.cyan}This is free software: you are free to change and redistribute it.#{ColorSupport.reset}"
+    puts "#{ColorSupport.red}There is NO WARRANTY, to the extent permitted by law.#{ColorSupport.reset}"
+    puts "#{ColorSupport.yellow}Originally written by #{ColorSupport.magenta}Kayvan Aghaiepour#{ColorSupport.reset}#{ColorSupport.yellow} and #{ColorSupport.reset}#{ColorSupport.magenta}David MacKenzie#{ColorSupport.reset}#{ColorSupport.yellow} and adapted by #{ColorSupport.reset}#{ColorSupport.magenta}Ismael Moreira#{ColorSupport.reset}."
   end
 end
