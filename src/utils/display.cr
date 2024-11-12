@@ -1,6 +1,6 @@
 #################################################
 #                                               #
-#         csum - BSDSumAlgorithm Module         #
+#             csum - Display Module             #
 #                                               #
 #                                               #
 # This module is part of the csum project,      #
@@ -21,38 +21,17 @@
 #                                               #
 #################################################
 
-module BSDSumAlgorithm
-  def self.bsd_sum_stream(input : IO, resstream : Pointer(Int32), length : Pointer(UInt64)) : Int32
-    buffer_length = 32_768
-    buffer = Bytes.new(buffer_length)
-    checksum = 0
-    total_bytes = 0_u64
+module Display
+  def self.output_bsd(file : String, resstream : Pointer(Int32), args : Bool, length : UInt64)
+    hbuf = ""
+    checksum = resstream.value
 
-    loop do
-      bytes_read = input.read(buffer) || 0
-      break if bytes_read == 0
+    blocks = (length + 511) / 512
 
-      sum = 0
+    printf("%d %d", checksum, blocks)
 
-      while sum < bytes_read
-        checksum = (checksum >> 1) + ((checksum & 1) << 15)
-        checksum += buffer[sum]
-        checksum &= 0xffff
-        sum += 1
-      end
-
-      total_bytes += bytes_read.to_u64
-
-      if total_bytes < bytes_read.to_u64
-        return -1
-      end
+    if args
+      print " ", file
     end
-
-    resstream.value = checksum
-    length.value = total_bytes
-
-    return 0
-  rescue ex
-    return -1
   end
 end
