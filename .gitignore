@@ -1,0 +1,7 @@
+# crystal librarys
+lib/
+
+# build files
+build/
+*.o
+*.bin
