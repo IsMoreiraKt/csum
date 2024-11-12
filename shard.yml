@@ -1,0 +1,18 @@
+name: csum
+version: 0.0.1
+
+authors:
+  - name: Ismael Moreira
+    email: ismaelmoreirakt@gmail.com
+    github: https://github.com/IsMoreiraKt
+
+description: |
+  A CLI tool to calculate a checksum for a file.
+
+license: GPL-3.0-or-later
+
+dependencies:
+  - name: crystal
+    version: "1.14.0"
+
+repository: https://github.com/IsMoreiraKt/csum
