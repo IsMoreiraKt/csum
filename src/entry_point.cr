@@ -39,11 +39,11 @@ OptionParser.parse(ARGV) do |parser|
       file_path = ARGV.first
 
       if CheckFile.is_valid_path?(file_path) == -1
-        puts "Invalid path: #{file_path}"
+        puts "#{ColorSupport.red}Invalid path: #{file_path}#{ColorSupport.reset}"
         exit
       end
       if CheckFile.is_file?(file_path) == -1
-        puts "#{file_path}: Is a directory"
+        puts "#{ColorSupport.red}#{file_path}: Is a directory#{ColorSupport.reset}"
         exit
       end
 
@@ -61,11 +61,11 @@ OptionParser.parse(ARGV) do |parser|
       file_path = ARGV.first
 
       if CheckFile.is_valid_path?(file_path) == -1
-        puts "Invalid path: #{file_path}"
+        puts "#{ColorSupport.red}Invalid path: #{file_path}#{ColorSupport.reset}"
         exit
       end
       if CheckFile.is_file?(file_path) == -1
-        puts "#{file_path}: Is a directory"
+        puts "#{ColorSupport.red}#{file_path}: Is a directory#{ColorSupport.reset}"
         exit
       end
 
@@ -94,11 +94,11 @@ if ARGV.size == 1
   file_path = ARGV.first
 
   if CheckFile.is_valid_path?(file_path) == -1
-    puts "Invalid path: #{file_path}"
+    puts "#{ColorSupport.red}Invalid path: #{file_path}#{ColorSupport.reset}"
     exit
   end
   if CheckFile.is_file?(file_path) == -1
-    puts "#{file_path}: Is a directory"
+    puts "#{ColorSupport.red}#{file_path}: Is a directory#{ColorSupport.reset}"
     exit
   end
 
