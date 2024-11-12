@@ -23,16 +23,18 @@
 
 require "../utils/colors.cr"
 
-def show_help
-  puts "#{ColorSupport.bold}Usage: csum [OPTION]... [FILE]...#{ColorSupport.reset}"
-  puts "#{ColorSupport.green}Display or verify BSD (16-bit) checksums.#{ColorSupport.reset}"
-  puts "\n"
+module Help
+  def self.show_help
+    puts "#{ColorSupport.bold}Usage: csum [OPTION]... [FILE]...#{ColorSupport.reset}"
+    puts "#{ColorSupport.green}Display or verify BSD (16-bit) checksums.#{ColorSupport.reset}"
+    puts "\n"
 
-  puts "#{ColorSupport.yellow}If no FILE is specified, or if FILE is -, reads from standard input.#{ColorSupport.reset}"
-  puts "\n"
+    puts "#{ColorSupport.yellow}If no FILE is specified, or if FILE is -, reads from standard input.#{ColorSupport.reset}"
+    puts "\n"
 
-  puts "\t #{ColorSupport.green}-r#{ColorSupport.reset} \t\t\t use the default BSD sum algorithm, operating with 1K blocks."
-  puts "\t #{ColorSupport.green}-s, \t --sysv#{ColorSupport.reset} \t use the System V sum algorithm, operating with 512-byte blocks."
-  puts "\t\t #{ColorSupport.green}--help#{ColorSupport.reset} \t show this help message and exit."
-  puts "\t\t #{ColorSupport.green}--version#{ColorSupport.reset} \t show version information and exit."
+    puts "\t #{ColorSupport.green}-r#{ColorSupport.reset} \t\t\t use the default BSD sum algorithm, operating with 1K blocks."
+    puts "\t #{ColorSupport.green}-s, \t --sysv#{ColorSupport.reset} \t use the System V sum algorithm, operating with 512-byte blocks."
+    puts "\t\t #{ColorSupport.green}--help#{ColorSupport.reset} \t show this help message and exit."
+    puts "\t\t #{ColorSupport.green}--version#{ColorSupport.reset} \t show version information and exit."
+  end
 end
