@@ -21,10 +21,8 @@
 #                                               #
 #################################################
 
-require "posix/stat"
-
 module CheckFile
-  def is_valid_path?(path : String) : Int32
+  def self.is_valid_path?(path : String) : Int32
     if File.exists?(path)
       return 0
     else
@@ -32,7 +30,7 @@ module CheckFile
     end
   end
 
-  def is_file?(path : String) : Int32
+  def self.is_file?(path : String) : Int32
     if File.exists?(path) && File.info(path).file?
       return 0
     else

@@ -22,16 +22,14 @@
 #################################################
 
 module Display
-  def self.output_bsd(file : String, resstream : Pointer(Int32), args : Bool, length : UInt64)
+  def self.output(file : String, resstream : Pointer(Int32), length : Pointer(UInt64))
     hbuf = ""
     checksum = resstream.value
 
-    blocks = (length + 511) / 512
+    blocks = (length.value + 511) / 512
 
     printf("%d %d", checksum, blocks)
 
-    if args
-      print " ", file
-    end
+    print " ", file
   end
 end
