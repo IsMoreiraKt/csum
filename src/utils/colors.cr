@@ -25,8 +25,10 @@ module ColorSupport
   @@GREEN = ""
   @@RED = ""
   @@YELLOW = ""
-  @@RESET = ""
+  @@CYAN = ""
+  @@MAGENTA = ""
   @@BOLD = ""
+  @@RESET = ""
 
   def self.support_colors? : Bool
     return false unless ENV["TERM"]
@@ -40,8 +42,10 @@ module ColorSupport
       @@GREEN = "\033[32m"
       @@RED = "\033[31m"
       @@YELLOW = "\033[33m"
-      @@RESET = "\033[0m"
+      @@CYAN = "\033[36m"
+      @@MAGENTA = "\033[35m"
       @@BOLD = "\033[1m"
+      @@RESET = "\033[0m"
     end
   end
 
@@ -57,11 +61,19 @@ module ColorSupport
     @@YELLOW
   end
 
-  def self.reset
-    @@RESET
+  def self.cyan
+    @@CYAN
+  end
+
+  def self.magenta
+    @@MAGENTA
   end
 
   def self.bold
     @@BOLD
+  end
+
+  def self.reset
+    @@RESET
   end
 end
