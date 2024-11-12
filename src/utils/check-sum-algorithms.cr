@@ -1,6 +1,6 @@
 #################################################
 #                                               #
-#         csum - BSDSumAlgorithm Module         #
+#        csum - CheckSumAlgorithm Module        #
 #                                               #
 #                                               #
 # This module is part of the csum project,      #
@@ -54,5 +54,53 @@ module CheckSumAlgorithms
     return 0
   rescue ex
     return -1
+  end
+
+  def self.sysv_sum_stream(input : IO, resstream : Pointer(Int32), length : Pointer(UInt64)) : Int32
+    ret = -1
+    total_bytes = 0_u64
+    buffer_length = 32_768
+    buffer = Bytes.new(buffer_length)
+
+    begin
+      sum = 0
+      s = 0
+
+      while true
+        sum = 0
+        while true
+          n = input.read(buffer[sum, buffer_length - sum]) || 0
+          sum += n
+
+          break if sum == buffer_length
+          break if n == 0
+          break if n.nil?
+        end
+
+        sum.times do |i|
+          s += buffer[i]
+        end
+
+        if total_bytes + sum < total_bytes
+          return ret
+        end
+
+        total_bytes += sum
+
+        break if n == 0 || n.nil?
+      end
+
+      r = (s & 0xffff) + ((s & 0xffffffff) >> 16)
+      checksum = (r & 0xffff) + (r >> 16)
+
+      resstream.value = checksum
+      length.value = total_bytes
+
+      ret = 0
+    rescue ex : Exception
+      return ret
+    end
+
+    return ret
   end
 end
