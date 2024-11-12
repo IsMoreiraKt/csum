@@ -25,27 +25,23 @@ module CheckSumAlgorithms
   def self.bsd_sum_stream(input : IO, resstream : Pointer(Int32), length : Pointer(UInt64)) : Int32
     buffer_length = 32768
     buffer = Bytes.new(buffer_length)
-    sum = 0
     checksum = 0
     total_bytes = 0_u64
 
     loop do
-      bytes_read = input.read(buffer) || 0
-      sum += bytes_read
-
+      bytes_read = input.read(buffer)
       break if bytes_read == 0
 
-      sum.times do |i|
+      bytes_read.times do |i|
         checksum = (checksum >> 1) + ((checksum & 1) << 15)
         checksum += buffer[i]
         checksum &= 0xffff
       end
 
-      if total_bytes + sum.to_u64 < total_bytes
+      total_bytes += bytes_read.to_u64
+      if total_bytes < bytes_read.to_u64
         return -1
       end
-
-      total_bytes += sum.to_u64
     end
 
     resstream.value = checksum

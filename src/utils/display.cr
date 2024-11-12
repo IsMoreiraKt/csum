@@ -25,8 +25,7 @@ module Display
   def self.output(file : String, resstream : Pointer(Int32), length : Pointer(UInt64))
     hbuf = ""
     checksum = resstream.value
-
-    blocks = (length.value + 511) / 512
+    blocks = ((length.value + 1023) / 1024).to_i
 
     printf("%d %d", checksum, blocks)
 
