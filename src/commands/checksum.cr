@@ -41,7 +41,7 @@ module CheckSum
       Display.output(file_path, resstream, length, 1023)
     else
       CheckSumAlgorithms.sysv_sum_stream(file, resstream, length)
-      Display.output(file_path, resstream, length, 511 )
+      Display.output(file_path, resstream, length, 511)
     end
   end
 end
