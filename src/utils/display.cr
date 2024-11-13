@@ -22,10 +22,10 @@
 #################################################
 
 module Display
-  def self.output(file : String, resstream : Pointer(Int32), length : Pointer(UInt64))
+  def self.output(file : String, resstream : Pointer(Int32), length : Pointer(UInt64), magic_numer : Int32)
     hbuf = ""
     checksum = resstream.value
-    blocks = ((length.value + 1023) / 1024).to_i
+    blocks = ((length.value + magic_numer) / (magic_numer + 1)).to_i
 
     printf("%d %d", checksum, blocks)
 

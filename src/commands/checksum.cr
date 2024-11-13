@@ -28,20 +28,20 @@ module CheckSum
   def self.checksum(resstream, length, algorithm_version, file_path = STDIN)
     if file_path.is_a?(IO::FileDescriptor)
       file = file_path
-      verify_version(resstream, length, algorithm_version, file)
-      Display.output(" ", resstream, length)
+      verify_version(resstream, length, algorithm_version, " ", file)
     else
       file = File.open(file_path, "r")
-      verify_version(resstream, length, algorithm_version, file)
-      Display.output(file_path, resstream, length)
+      verify_version(resstream, length, algorithm_version, file_path, file)
     end
   end
 
-  def self.verify_version(resstream, length, algorithm_version, file)
+  def self.verify_version(resstream, length, algorithm_version, file_path, file)
     if algorithm_version == 0
       CheckSumAlgorithms.bsd_sum_stream(file, resstream, length)
+      Display.output(file_path, resstream, length, 1023)
     else
       CheckSumAlgorithms.sysv_sum_stream(file, resstream, length)
+      Display.output(file_path, resstream, length, 511 )
     end
   end
 end
