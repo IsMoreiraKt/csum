@@ -57,7 +57,7 @@ csum [FLAGS] [FILE]
 ```
 
 ## Command Reference
-- **`csum --help`**** | ****`csum -h`**: Display a detailed help message with all available commands.
-- **`csum --version`**** | ****`csum -v`**: Show the current version of `csum`.
-- **`csum --sysv`**** | ****`csum -s`**: Compute the checksum using the System V sum algorithm (512-byte blocks).
-- **`csum`**** | ****`csum -r`**: Use the default BSD sum algorithm (1K blocks).
+- **`csum --help`** | **`csum -h`**: Display a detailed help message with all available commands.
+- **`csum --version`** | **`csum -v`**: Show the current version of `csum`.
+- **`csum --sysv`** | **`csum -s`**: Compute the checksum using the System V sum algorithm (512-byte blocks).
+- **`csum`** | **`csum -r`**: Use the default BSD sum algorithm (1K blocks).
